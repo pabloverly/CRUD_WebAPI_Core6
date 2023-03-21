@@ -22,7 +22,7 @@ namespace webapi.Repository
         public async Task<Usuario> GetUser(int id)
         {
              return await _context.Usuarios.
-                Where(x  => x.Id == id).FirstOrDefaultAsync();
+             Where(x  => x.Id == id).FirstOrDefaultAsync();
         }      
 
         public void addUser(Usuario user)
@@ -32,11 +32,11 @@ namespace webapi.Repository
       
         public void updateUser(Usuario user)
         {
-            throw new NotImplementedException();
+            _context.Update(user);
         }
         public void deleteUser(Usuario user)
         {
-            throw new NotImplementedException();
+            _context.Remove(user);
         }      
         public async Task<bool> SalvechangerAsync()
         {

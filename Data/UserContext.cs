@@ -20,7 +20,7 @@ namespace webapi.Data
             usuario.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
             usuario.Property(x => x.Nome).HasColumnName("nome").ValueGeneratedOnAdd().IsRequired();
             usuario.Property(x => x.DataNascimento).HasColumnName("dtNascimento").ValueGeneratedOnAdd();
-            usuario.Property(x => x.Email).HasColumnType("text");
+            // usuario.Property(x => x.Email).HasColumnType("text");
         }
         
     }

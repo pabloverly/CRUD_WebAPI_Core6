@@ -45,7 +45,6 @@ namespace webapi.Controllers
                 : NotFound("Usuário não encontrado");
         }  
 
-
         [HttpPost]
          public async Task<IActionResult> Post(Usuario usuario)
         {
@@ -53,6 +52,43 @@ namespace webapi.Controllers
             return await _userRepository.SalvechangerAsync()
             ? Ok("User inserido com sucesso")
             : BadRequest("Erro ao inserir o usuário"); 
+        }
+       
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Usuario usuario)
+        {
+            var user = await _userRepository.GetUser(id);
+            if(user == null)
+            {
+                return NotFound("Usuário não encontrado");
+            }
+            user.Nome = usuario.Nome ?? user.Nome;
+            user.DataNascimento = usuario.DataNascimento != new DateTime() 
+                    ? usuario.DataNascimento 
+                    : user.DataNascimento;
+            user.Email = usuario.Email ?? user.Email;
+
+            _userRepository.updateUser(user);
+
+            return await _userRepository.SalvechangerAsync()?
+                Ok("Usuário atualizado com sucesso")
+                : BadRequest("Erro ao atualizar o usuário");           
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _userRepository.GetUser(id);
+
+            if(user == null)
+            {
+                return NotFound("Usuário não encontrado");
+            }
+
+            _userRepository.deleteUser(user);
+            return await _userRepository.SalvechangerAsync()?
+                Ok("Usuário deletado com sucesso")
+                : BadRequest("Erro ao deletar o usuário");
         }
     }
 }

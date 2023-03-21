@@ -9,5 +9,5 @@ Npgsql.EntityFrameworkCore.PostgreSQL
 $ dotnet ef migrations add InitialCreate
 # ATUALIZA DATABASE
 $ dotnet ef database update
-# ajustar tabela
+# AJUSTANDO TABELA
 $ dotnet ef migrations add Atualizacaousuario
