@@ -8,4 +8,5 @@ namespace webapi.Model
         public string? Email { get; set; }
         
     }
+    
 }
